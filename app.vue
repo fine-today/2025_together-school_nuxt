@@ -1,3 +1,3 @@
 <template>
-  <NuxtLayout> <NuxtPage />ddfasf </NuxtLayout>
+  <NuxtLayout> <NuxtPage /> </NuxtLayout>
 </template>

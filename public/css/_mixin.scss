@@ -1,0 +1,143 @@
+@use "sass:map";
+
+/*===== 변수 =====*/
+$SCREEN_TABLET: 1280px;
+$SCREEN_MOBILE: 768px;
+$SCREEN_ONLY_PC: 1281px;
+
+/*===== 반응형 media-query =====*/
+@mixin tablet {
+  @media (max-width: $SCREEN_TABLET) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: $SCREEN_MOBILE) {
+    @content;
+  }
+}
+@mixin only-pc {
+  @media (min-width: $SCREEN_ONLY_PC) {
+    @content;
+  }
+}
+
+@mixin hidden {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(1px);
+}
+
+@mixin shadow($depth: 1) {
+  @if ($depth == 1) {
+    box-shadow: 0 0.1rem rgba(0, 0, 0, 0.25);
+  }
+}
+
+@mixin ellipsis($line: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if ($line == 1) {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+  }
+}
+
+/* typo */
+@mixin h1($size: lg) {
+}
+@mixin h2($size: lg) {
+}
+@mixin h3($size: lg) {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  line-height: 30px;
+  color: #008ff5;
+}
+@mixin h4($size: sm) {
+  margin-top: 21px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  line-height: 28px;
+  color: #161270;
+}
+@mixin h5($size: sm) {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  line-height: 26px;
+  color: #414a73;
+}
+@mixin h6($size: sm) {
+  margin-top: 15px;
+  margin-bottom: 11px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #888da6;
+}
+
+@mixin subTitle {
+  font-size: 17px;
+  color: #888da6;
+  margin-left: 10px;
+}
+
+// DARK_MODE 적용
+
+$colors: (
+  primary: (
+    white: #fff,
+    black: #000,
+    brand1: #00b58a,
+    brand2: #000a6b,
+    gray-9: #999,
+    gray04: #f4f4f4,
+    bg01: #f4f4f4,
+  ),
+  dark: (
+    white: #000,
+    black: #fff,
+    brand1: #03096e,
+    brand2: #00b58a,
+    gray-9: #555,
+    gray04: #333,
+    bg01: #222,
+  ),
+  mode1: (
+    white: #222,
+    black: #001100,
+    brand1: #01b68d,
+    brand2: #333,
+    gray-9: #999,
+    gray04: #222,
+    bg01: #03096e,
+  ),
+);
+
+@function set_color($key, $type: "primary") {
+  @each $name, $color in map-get($colors, $type) {
+    @if ($key == $name) {
+      @return $color;
+    }
+  }
+}
+
+@mixin color($property, $color, $important: false) {
+  #{$property}: set_color($color) #{if($important, "!important", "")};
+  @at-root body[data-theme="dark"] & {
+    #{$property}: set_color($color, dark) #{if($important, "!important", "")};
+  }
+  @at-root body[data-theme="mode1"] & {
+    #{$property}: set_color($color, mode1) #{if($important, "!important", "")};
+  }
+}

@@ -1,19 +1,15 @@
 <script setup>
-
+import Header from "@/components/pub/layout/Header.vue";
+import Footer from "@/components/pub/layout/Footer.vue";
+import Accessibility from "@/components/pub/layout/Accessibility.vue";
 </script>
 
 <template>
   <div>
-    <header class="header">
-      <img src="@/public/h1_logo.gif" alt="Logo" class="logo" />
-      <h1 class="title"></h1>
-    </header>
+    <Accessibility />
+    <Header />
     <slot />
-    <footer>
-      <div>
-        <h1>Footer</h1>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 

@@ -19,4 +19,13 @@ export default defineNuxtConfig({
     "@nuxt/ui",
   ],
   ui: { prefix: "Nuxt" },
+  icon: {
+    customCollections: [
+      {
+        prefix: "custom",
+        dir: "./assets/icons",
+      },
+    ],
+  },
+  css: ["~/public/css/common.scss"],
 });
