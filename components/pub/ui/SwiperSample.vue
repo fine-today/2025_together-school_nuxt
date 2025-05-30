@@ -6,6 +6,7 @@
       :space-between="50"
       :navigation="{ enabled: true, prevEl: '.prev', nextEl: '.next' }"
       :pagination="{ clickable: true }"
+      :spaceBetween="0"
       @swiper="onSwiper"
       :loop="true"
       @slideChange="onSlideChange"
@@ -30,11 +31,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const onSwiper = (swiper) => {
-  console.log(swiper);
+const onSwiper = () => {
+  console.log();
 };
 const onSlideChange = () => {
-  console.log("slide change");
+  console.log();
 };
 const modules = [Navigation, Pagination, Scrollbar, A11y];
 </script>
@@ -54,7 +55,7 @@ const modules = [Navigation, Pagination, Scrollbar, A11y];
   height: inherit;
   .swiper-slide {
     height: inherit;
-    background-color: #333;
+    background-color: #ddd;
   }
 }
 .swiper-pagination {

@@ -87,5 +87,5 @@ import Menu from "./Menu.vue";
 </script>
 
 <style scope lang="scss">
-@import url("@/public/css/header.scss");
+@import url("/public/css/header.scss");
 </style>

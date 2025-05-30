@@ -1,16 +1,8 @@
-import { config } from "dotenv";
-import { resolve } from "path";
-
-const envFile = `.env.${process.env.NODE_ENV || "development"}`;
-config({ path: resolve(process.cwd(), envFile) });
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
-  runtimeConfig: {
-    public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE,
-    },
-  },
+
   modules: [
     "@nuxt/eslint",
     "@nuxt/fonts",
@@ -18,14 +10,5 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/ui",
   ],
-  ui: { prefix: "Nuxt" },
-  icon: {
-    customCollections: [
-      {
-        prefix: "custom",
-        dir: "./assets/icons",
-      },
-    ],
-  },
-  css: ["~/public/css/common.scss"],
+  css: ["/public/css/common.scss", "./public/css/default.css"],
 });
