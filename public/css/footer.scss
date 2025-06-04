@@ -1,7 +1,5 @@
 .footer {
-  border-top: 1px solid #ddd;
-  padding-top: 40px;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
   .wrap {
     display: flex;
   }
@@ -9,12 +7,22 @@
 .footer-con {
   flex: 1;
   .footer-line {
-    display: flex;
-    margin-bottom: 20px;
+    &.anchor-line {
+      padding-top: 40px;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ddd;
+      > .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
   }
   .footer-anchor-list {
     display: flex;
     align-items: center;
+    gap: 37px;
   }
   .footer-anchor-item {
     display: flex;
@@ -22,35 +30,37 @@
     position: relative;
     &::after {
       display: inline-block;
+      position: absolute;
+      right: -19px;
       content: "";
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background-color: #1864bb;
-      margin: 0 10px;
+      width: 1px;
+      height: 12px;
+      background-color: #cdcdcd;
     }
     &:last-child::after {
       display: none;
     }
     .footer-anchor {
       font-size: 18px;
+      color: #666;
     }
     &.safety .footer-anchor {
       font-weight: 700;
-      color: #1864bb;
+      color: #000a6b;
     }
   }
   .sns-list {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 14px;
     margin-left: 30px;
   }
   .sns-item {
     .sns-anchor {
+      filter: grayscale(1);
       display: block;
-      width: 40px;
-      height: 40px;
+      width: 28px;
+      height: 28px;
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;
@@ -94,6 +104,9 @@
     display: block;
     .logo-anchor {
       display: block;
+      img {
+        width: 100%;
+      }
     }
   }
   .footer-info-list {
@@ -104,31 +117,28 @@
     line-height: 1.5;
     color: #666;
     margin-bottom: 10px;
-    margin-right: 20px;
+    margin-right: 5px;
   }
   div.footer-info-item {
     display: block;
-    b {
-      font-weight: 700;
-    }
   }
 }
 .footer-cert {
   display: flex;
-  flex-direction: column;
-  padding-top: 10px;
+  padding-top: 30px;
   // justify-content: center;
   align-items: center;
   .footer-cert-logo {
     .footer-cert-anchor {
       img {
-        width: 106px;
-        height: 106px;
+        width: 75px;
+        height: auto;
       }
     }
   }
   .footer-cert-text {
     margin-top: 10px;
+    margin-left: 20px;
     color: #666;
     font-size: 16px;
     line-height: 1.5;

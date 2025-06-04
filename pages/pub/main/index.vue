@@ -9,7 +9,7 @@
             :key="favoriteItem.id"
           >
             <a :href="favoriteItem.anchor" class="favorite-anchor">
-              <Icon :icon="favoriteItem.icon" />
+              <Icons :icon="favoriteItem.icon" />
               <span class="title">{{ favoriteItem.title }}</span>
             </a>
           </li>
@@ -23,11 +23,11 @@
           <div class="section2-header">
             <h2>
               공지사항
-              <icons class="section2-header-icon notice-icon" icon="notice" />
+              <Icons class="header-icon notice-icon" icon="notice" />
             </h2>
             <a href="#n" class="more">
               더보기
-              <icons class="more-icon" icon="expand" />
+              <Icons class="more-icon" icon="expand" />
             </a>
           </div>
 
@@ -50,11 +50,11 @@
           <div class="section2-header">
             <h2>
               영상나눔
-              <icons class="section2-header-icon video-icon" icon="video" />
+              <Icons class="header-icon video-icon" icon="video" />
             </h2>
             <a href="#n" class="more">
               더보기
-              <icons class="more-icon" icon="expand" />
+              <Icons class="more-icon" icon="expand" />
             </a>
           </div>
           <div class="video-list-wrap">
@@ -64,14 +64,17 @@
                 v-for="videoItem in videoLists"
                 :key="videoItem.id"
               >
-                <a :href="videoItem.anchor" class="video-item">
+                <a :href="videoItem.anchor" class="video-anchor">
                   <div
                     class="thumbnail"
-                    v-bind:style="`background: url(${videoItem.thumbnail})`"
-                  ></div>
+                    :title="`${videoItem.title} 이미지`"
+                    v-bind:style="`background-image: url(../../images/main/${videoItem.thumbnail})`"
+                  >
+                    <Icons icon="play" class="play-icon" />
+                  </div>
                   <div class="title-wrap">
-                    <div class="video-title"></div>
-                    <div class="from"></div>
+                    <div class="video-title">{{ videoItem.title }}</div>
+                    <div class="video-source">{{ videoItem.source }}</div>
                   </div>
                 </a>
               </li>
@@ -85,7 +88,7 @@
 
 <script setup>
 import { reactive } from "vue";
-import Icon from "@/components/pub/ui/Icons.vue";
+import Icons from "@/components/pub/ui/Icons.vue";
 const favoriteLists = reactive([
   {
     id: "favorite01",
@@ -158,82 +161,18 @@ const videoLists = reactive([
     title: "맞춤형 학업성취도 자율평가",
     source: "강혜진 박사 한국교육과정평가원",
     anchor: "#n",
-    thumbnail: "@/images/main/video01.jpg",
+    thumbnail: "video01.jpg",
   },
   {
     id: "video02",
     title: "고교학점제 학부모 대상 온라인",
     source: "교육부",
     anchor: "#n",
-    thumbnail: "@/images/main/video02.jpg",
+    thumbnail: "video02.jpg",
   },
 ]);
 </script>
 
 <style scope lang="scss">
-.section1 {
-  padding: 80px;
-}
-.favorite-list {
-  display: flex;
-  text-align: center;
-  justify-content: space-between;
-  gap: 35px;
-}
-.favorite-item {
-  display: flex;
-  width: 100%;
-  height: 244px;
-  flex: 1;
-  border-radius: 30px;
-  background-color: #0c8365;
-  transition: all 0.2s;
-  &:hover {
-    background-color: #000a6b;
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-    .favorite-anchor {
-    }
-  }
-  .favorite-anchor {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: 30px;
-    gap: 20px;
-    .svg-icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background-color: #fff;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .title {
-      font-size: 22px;
-      color: #fff;
-    }
-  }
-}
-
-.section2 {
-  padding: 80px 0;
-  background: url(@/public/images/main/notice-bg.png) no-repeat center left;
-  .notice {
-  }
-  .notice-header {
-    h2 {
-      .notice-icon {
-      }
-    }
-    .more {
-      .more-icon {
-      }
-    }
-  }
-}
+@import url("/public/css/main.scss");
 </style>
