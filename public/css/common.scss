@@ -25,7 +25,11 @@ button,
 input[type="button"] {
   cursor: pointer;
 }
-
+::before,
+::after {
+  content: "";
+  display: none;
+}
 /*=========== space =============*/
 
 @for $i from 0 through 10 {

@@ -26,6 +26,7 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@wdns/vue-code-block": "^2.3.5",
     "sass-embedded": "^1.89.0"
   }
 }

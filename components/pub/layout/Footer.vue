@@ -42,18 +42,15 @@
             <ul class="logo-list">
               <li class="logo-item">
                 <a href="#n" class="logo-anchor" target="_blank" title="새창">
-                  <!-- <img
-                    src="/public/images/common/logo-edu.png"
+                  <NuxtImg
+                    src="/images/common/logo-edu.png"
                     alt="교육부 로고"
-                  />-->
+                  />
                 </a>
               </li>
               <li class="logo-item">
                 <a href="#n" class="logo-anchor" target="_blank" title="새창">
-                  <!--<img
-                    src="/public/images/common/logo-ebs.png"
-                    alt="EBS 로고"
-                  />-->
+                  <NuxtImg src="/images/common/logo-ebs.png" alt="EBS 로고" />
                 </a>
               </li>
             </ul>
@@ -85,10 +82,10 @@
         <div class="footer-cert">
           <div class="footer-cert-logo">
             <a href="#n" class="footer-cert-anchor">
-              <!-- <img
-                src="/public/images/common/logo-ismsp.png"
+              <NuxtImg
+                src="/images/common/logo-ismsp.png"
                 alt="정보보호 및 개인정보보호 관리체계 인증 ISMS·P - Personal Information &amp; Information Security Monagement System"
-              />-->
+              />
             </a>
           </div>
           <p class="footer-cert-text">
