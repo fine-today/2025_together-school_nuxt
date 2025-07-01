@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@internationalized/date": "^3.8.2",
     "@nuxt/eslint": "^1.4.1",
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/icon": "^1.13.0",
@@ -20,13 +21,14 @@
     "eslint": "^9.27.0",
     "nuxt": "^3.17.4",
     "pinia": "^3.0.2",
+    "prismjs": "^1.30.0",
     "swiper": "^11.2.8",
     "typescript": "^5.8.3",
     "vue": "^3.5.15",
+    "vue-prism-component": "^2.0.0",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@wdns/vue-code-block": "^2.3.5",
-    "sass-embedded": "^1.89.0"
+    "sass-embedded": "^1.89.2"
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <nav class="menu" id="menu">
-    <div class="wrap">
+  <nav class="menu over" id="menu" ref="menuElem">
+    <div class="menu-wrap" :style="{ height: menuHeight + 'px' }">
       <div class="depth depth1">
         <ul class="depth-list depth1-list">
           <li
@@ -11,7 +11,15 @@
             <a href="#n" class="depth-anchor depth1-anchor">
               <span>{{ depth1.title }}</span>
             </a>
-            <div class="depth depth2" v-if="depth1.sub !== undefined">
+            <div
+              class="depth depth2"
+              v-if="depth1.sub !== undefined"
+              :ref="
+                (el) => {
+                  if (el) itemsRefs[index] = el;
+                }
+              "
+            >
               <ul class="depth-list depth2-list">
                 <li
                   class="depth-item depth2-item"
@@ -35,15 +43,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, onBeforeUnmount, reactive, ref } from "vue";
 import Icons from "@/components/pub/ui/Icons.vue";
-const MENUS = ref([
+const MENUS = reactive([
   {
     id: "0",
     title: "정책",
     anchor: "#n",
     active: false,
-    icons: `policy`,
+    icons: "policy",
     sub: [
       {
         id: "0-1",
@@ -162,6 +170,49 @@ const MENUS = ref([
     ],
   },
 ]);
+
+/* 높이값 산출 */
+const menuElem = ref(null);
+const itemsRefs = ref([]);
+const menuHeight = ref(70);
+const fullHeight = ref(70);
+const menuHoverEvent = () => {
+  menuElem.value.classList.add("over");
+  menuHeight.value = fullHeight.value;
+};
+const menuBlurEvent = () => {
+  menuElem.value.classList.remove("over");
+  menuHeight.value = 70;
+};
+onMounted(() => {
+  setTimeout(() => {
+    itemsRefs.value.forEach((item) => {
+      if (item) {
+        if (item.offsetHeight > fullHeight.value) {
+          fullHeight.value = item.offsetHeight;
+        }
+      }
+    });
+    fullHeight.value = fullHeight.value + 70;
+    if (menuElem.value) {
+      menuElem.value.addEventListener("mouseover", menuHoverEvent);
+      menuElem.value.addEventListener("focusin", menuHoverEvent);
+      menuElem.value.addEventListener("mouseleave", menuBlurEvent);
+      menuElem.value.addEventListener("focusout", menuBlurEvent);
+    }
+  }, 0);
+});
+
+onBeforeUnmount(() => {
+  setTimeout(() => {
+    if (menuElem.value) {
+      menuElem.value.removeEventListener("mouseover", menuHoverEvent);
+      menuElem.value.removeEventListener("focusin", menuHoverEvent);
+      menuElem.value.removeEventListener("mouseleave", menuBlurEvent);
+      menuElem.value.removeEventListener("focusout", menuBlurEvent);
+    }
+  }, 0);
+});
 </script>
 
 <style></style>

@@ -87,8 +87,23 @@
 </template>
 
 <script setup>
+import { useHead } from "#app";
 import { reactive } from "vue";
 import Icons from "@/components/pub/ui/Icons.vue";
+
+// main 레이아웃 분리
+definePageMeta({
+  layout: "main",
+});
+
+//body에 data-site 속성 추가(css 분리)
+useHead({
+  bodyAttrs: {
+    "data-site": "main",
+  },
+});
+
+//section1
 const favoriteLists = reactive([
   {
     id: "favorite01",
@@ -122,6 +137,7 @@ const favoriteLists = reactive([
   },
 ]);
 
+// section2 - 공지사항
 const noticeLists = reactive([
   {
     id: "notice1",
@@ -155,6 +171,7 @@ const noticeLists = reactive([
   },
 ]);
 
+// section2 - 동영상 리스트
 const videoLists = reactive([
   {
     id: "video01",

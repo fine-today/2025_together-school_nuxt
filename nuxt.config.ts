@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
-
   modules: [
     "@nuxt/eslint",
     "@nuxt/fonts",
@@ -10,5 +9,6 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/ui",
   ],
+  plugins: [{ src: "@/plugins/prism.client.js", mode: "client" }],
   css: ["/public/css/common.scss", "./public/css/default.css"],
 });

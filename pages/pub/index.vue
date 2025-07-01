@@ -1,4 +1,4 @@
-<template><div>__</div></template>
+<template><div>기본 화면입니다.</div></template>
 
 <script></script>
 

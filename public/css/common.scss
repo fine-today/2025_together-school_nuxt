@@ -27,9 +27,32 @@ input[type="button"] {
 }
 ::before,
 ::after {
-  content: "";
-  display: none;
 }
+#__nuxt {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  grid-template-areas: "header" "content" "footer";
+  grid-template-rows: auto 1fr auto;
+  .accessibility {
+  }
+  .header {
+    grid-area: header;
+  }
+  .content {
+    grid-area: content;
+    min-height: 300px;
+    > .wrap {
+      padding-top: 80px;
+    }
+  }
+  .footer {
+    grid-area: footer;
+  }
+}
+
 /*=========== space =============*/
 
 @for $i from 0 through 10 {
@@ -139,5 +162,127 @@ input[type="button"] {
         display: block;
       }
     }
+  }
+}
+
+/* font */
+
+h2,
+.h2 {
+  font-size: 48px;
+}
+h3,
+.h3 {
+  font-size: 36px;
+}
+h4,
+.h4 {
+  font-size: 24px;
+}
+h5,
+.h5 {
+  font-size: 20px;
+}
+h6,
+.h6 {
+  font-size: 18px;
+}
+
+/*=================== sub layout(top) ======================*/
+
+.sub-top {
+  height: 329px;
+  background-color: rgba(216, 240, 183, 0.2);
+  > .wrap {
+    position: relative;
+    height: inherit;
+    display: flex;
+    align-items: center;
+  }
+  .title {
+    padding-bottom: 54px;
+    h2 {
+      font-size: 40px;
+      line-height: 48px;
+      font-weight: 700;
+      color: #323232;
+    }
+    .sub-title {
+      margin-top: 16px;
+      font-size: 24px;
+      line-height: 29px;
+      font-weight: 400;
+      color: #666;
+    }
+  }
+  .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+.breadcrumb-wrap {
+  padding-top: 60px;
+  > .wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.sns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumb {
+}
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.breadcrumb-item {
+  font-size: 24px;
+  color: #666;
+  .breadcrumb-anchor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dropdown-btn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: inherit;
+    color: inherit;
+    box-shadow: none;
+    padding: 0;
+    &:hover {
+      background-color: transparent;
+    }
+    &[aria-expanded="true"] {
+      font-weight: 600;
+      color: #323232;
+    }
+  }
+}
+[data-reka-popper-content-wrapper] {
+  [data-dismissable-layer] {
+    box-shadow: 0 0 15 rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    padding: 24px 0 24px;
+  }
+  [data-reka-collection-item] {
+    font-size: 22px;
+    line-height: 2.2;
+    color: #666;
+    padding: 2px 24px;
+    &:hover {
+      background-color: #000a6b;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+  [role="group"] {
+    padding: 0;
   }
 }

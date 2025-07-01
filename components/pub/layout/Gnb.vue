@@ -1,7 +1,7 @@
 <template>
   <div class="gnb">
     <div class="wrap">
-      <div class="color-mode" :class="colorMode ? 'bright' : 'dark'">
+      <div class="color-mode" :class="colorMode ? 'light' : 'dark'">
         <div class="input">
           <input type="checkbox" id="color-mode" v-model="colorMode" />
           <label for="color-mode">
@@ -84,9 +84,18 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onUpdated } from "vue";
 import Icons from "/components/pub/ui/Icons.vue";
+
 const colorMode = ref(true);
+onUpdated(() => {
+  const colorModeType = ref(colorMode.value ? "light" : "dark");
+  useHead({
+    htmlAttrs: {
+      "data-color-mode": colorModeType,
+    },
+  });
+});
 </script>
 
 <style></style>

@@ -3,10 +3,7 @@
     <Accessibility />
     <Header />
     <div class="content" id="content">
-      <SubTop />
-      <div class="wrap">
-        <slot />
-      </div>
+      <slot />
     </div>
     <Footer />
   </div>
@@ -16,7 +13,6 @@
 import Header from "@/components/pub/layout/Header.vue";
 import Footer from "@/components/pub/layout/Footer.vue";
 import Accessibility from "@/components/pub/layout/Accessibility.vue";
-import SubTop from "@/components/pub/layout/SubTop.vue";
 </script>
 
 <style scoped></style>

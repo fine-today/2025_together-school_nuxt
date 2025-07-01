@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <header class="header" id="header">
     <Gnb />
 
     <!--================ menu-box ================-->
     <div class="menu-box">
       <Menu />
     </div>
-  </div>
+  </header>
 </template>
 
 <script setup>

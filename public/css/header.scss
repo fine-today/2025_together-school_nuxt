@@ -61,6 +61,7 @@
         opacity: 0;
         left: 0;
         top: 0;
+        width: calc(100% - 16px);
         & + label {
           cursor: pointer;
           width: 100%;
@@ -146,7 +147,7 @@
   }
 }
 .lnb {
-  > .wrap {
+  .wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -171,8 +172,9 @@
       width: 445px;
       height: 60px;
       border: 3px solid #000a6b;
-      padding: 10px 80px 10px 26px;
+      padding: 10px 100px 10px 26px;
       input {
+        width: 100%;
         font-size: 20px;
         &::placeholder {
           color: #999;
@@ -245,28 +247,32 @@
 .header {
   grid-area: header;
 }
-.main {
-  .wrapper {
-    display: grid;
-    grid-template-areas: "header-banner" "header" "footer";
-  }
-}
 .menu-box {
   flex-wrap: wrap;
   display: flex;
-  .wrap {
-    display: flex;
-    flex-direction: column;
-  }
   .menu {
     width: 100%;
     position: relative;
-    z-index: 10;
+    z-index: 100;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    .menu-wrap {
+      overflow: hidden;
+      transition: all 0.3s;
+      background-color: #fff;
+    }
+    .depth1 {
+      position: relative;
+    }
+    &.over {
+      .depth1 {
+        //transition: all 0.3s;
+      }
+    }
     &::before {
+      content: "";
       display: block;
       position: absolute;
-      z-index: -1;
+      z-index: 1;
       height: 70px;
       width: 100%;
       background-color: #0c8365;
@@ -275,6 +281,7 @@
       position: static;
     }
     .depth1 {
+      z-index: 10;
     }
     .depth-list {
     }
@@ -302,11 +309,16 @@
         font-weight: 700;
         color: #fff;
         position: relative;
-      }
-      &:hover {
-        .depth2 {
+        &::after {
           display: block;
+          content: "";
+          width: 1px;
+          height: 20px;
+          background-color: rgba(255, 255, 255, 0.2);
         }
+      }
+      &:last-child .depth1-anchor::after {
+        display: none;
       }
       &:not(:last-child) .depth1-anchor::after {
         display: block;
@@ -338,10 +350,15 @@
       .depth2-item {
         position: relative;
         .depth2-anchor {
+          display: block;
+          position: relative;
+          z-index: 10;
           font-size: 22px;
-          line-height: 1;
+          line-height: 22px;
           color: #666666;
+          transition: all 0.2s;
         }
+        &:hover,
         &.active {
           .depth2-anchor {
             font-weight: 700;
@@ -363,12 +380,14 @@
       }
       .depth2-bg {
         position: absolute;
+        z-index: 1;
         right: 3px;
         bottom: 16px;
         width: 175px;
         height: 175px;
         &::before {
           display: block;
+          content: "";
           position: absolute;
           width: 100%;
           height: 100%;
@@ -389,6 +408,46 @@
           .depth3-anchor {
           }
         }
+      }
+    }
+  }
+}
+
+[data-site="main"] .menu-box .menu {
+  overflow: visible;
+  .menu-wrap {
+    height: auto !important;
+  }
+}
+[data-site="sub"] .menu-box {
+  height: 70px;
+  .menu {
+    .menu-wrap {
+      position: relative;
+      transition: all 0.3s 0.2s;
+    }
+    .depth1 {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      overflow: hidden;
+    }
+    .depth2 {
+      width: 100%;
+      top: 70px;
+      background-color: #fff;
+    }
+    &.over {
+      .menu-wrap {
+        transition: all 0.3s;
+      }
+      .depth1 {
+      }
+      .depth1-list {
+        position: relative;
+        transition: all 0.3s;
+        overflow: hidden;
       }
     }
   }
